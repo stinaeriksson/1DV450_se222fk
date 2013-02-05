@@ -1,0 +1,12 @@
+<h1> Alla projekt </h1>
+
+<% @projects.each do |project| %>
+
+		<%= link_to project.name %>
+		<% project.users.each do |user| %>
+			<%= link_to user.first_name, user_path(user) %>
+
+		<% end %>	
+		
+		
+<% end %>
