@@ -1,0 +1,32 @@
+<h1><%= @project.name %></h1> 
+
+<p><%= @project.description %></p>
+
+<p>Startdatum: <%= @project.start_date %></p>
+
+<p>Slutdatum: <%= @project.end_date %></p>
+
+<p>Medlemmar i projektet: </p>
+<% @users_in_project.each do |user| %>
+<ul>
+	<li>
+		<%= link_to user.first_name, user_path(user)%>
+	</li>
+</ul>	
+
+		
+		
+<% end %>
+
+<p> Tickets: </p>
+<% if @tickets_for_project.empty? %>
+  <p> Projektet har inga tickets </p>
+	
+<% else %>
+
+	<% @tickets_for_project.each do |ticket| %>
+		<%= link_to ticket.name %>
+
+	
+	<% end %>
+	<% end %>

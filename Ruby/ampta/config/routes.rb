@@ -15,6 +15,9 @@ Ampta::Application.routes.draw do
   resources :users
   resources :tickets
 
+  get '/projects/:id' , to: 'projects#show'
+  get '/users/:id' , to: 'users#show'
+
   # Sample resource route with options:
   #   resources :products do
   #     member do

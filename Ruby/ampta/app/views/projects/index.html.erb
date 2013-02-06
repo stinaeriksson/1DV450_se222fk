@@ -2,11 +2,13 @@
 
 <% @projects.each do |project| %>
 
-		<%= link_to project.name %>
-		<% project.users.each do |user| %>
-			<%= link_to user.first_name, user_path(user) %>
+		
+<ul>
+	<li>
+			<%= link_to project.name, project_path(project) %>
+	</li>
+</ul>
 
-		<% end %>	
 		
 		
 <% end %>
