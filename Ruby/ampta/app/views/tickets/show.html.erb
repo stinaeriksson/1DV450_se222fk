@@ -1,0 +1,9 @@
+<h1><%= @ticket.name %></h1> 
+
+<p><%= @ticket.description %></p>
+
+<p>Start: <%= @ticket.start_time %></p>
+
+<p>Slut: <%= @ticket.end_time %></p>
+
+<%= link_to 'ta bort', ticket_path, :method => :delete %>

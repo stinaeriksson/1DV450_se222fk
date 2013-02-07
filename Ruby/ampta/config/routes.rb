@@ -17,6 +17,9 @@ Ampta::Application.routes.draw do
 
   get '/projects/:id' , to: 'projects#show'
   get '/users/:id' , to: 'users#show'
+  get '/tickets/:id' , to: 'tickets#show'
+  delete '/projects/:id' , to:'projects#destroy'
+  delete '/tickets/:id' , to:'tickets#destroy'
 
   # Sample resource route with options:
   #   resources :products do
