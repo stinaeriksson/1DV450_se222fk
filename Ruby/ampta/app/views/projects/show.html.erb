@@ -2,9 +2,9 @@
 
 <p><%= @project.description %></p>
 
-<p>Startdatum: <%= @project.start_date %></p>
+<p>Startdatum: <%= @project.start_date.strftime("%d/%m/%y") %></p>
 
-<p>Slutdatum: <%= @project.end_date %></p>
+<p>Slutdatum: <%= @project.end_date.strftime("%d/%m/%y") %></p>
 
 <p>Medlemmar i projektet: </p>
 <% @users_in_project.each do |user| %>

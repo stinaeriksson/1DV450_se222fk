@@ -1,0 +1,39 @@
+<h1> Skapa projekt</h1>
+
+<% if @project.errors.any? %>
+	<div id="error_messages">
+		<h2><%= pluralize(@project.errors.count, "fel", "fel") %> i formuläret gjorde att projektet inte kunde sparas:</h2>
+	<ul>
+		<% @project.errors.each do |attr,msg| %>
+			<li><%= msg %></li>
+		<% end %>
+	</ul>
+</div>
+<% end %>
+
+<%= form_for @project do |f| %>
+	<div class="text_field">
+		<%= f.label :Namn %>
+		<%= f.text_field :name %>
+	</div>
+
+	<div class="text_area">
+		<%= f.label :Beskrivning %>
+		<%= f.text_area :description %>
+	</div>
+
+	<div class="text_field">
+		<%= f.label "Start datum" %>
+		<%= f.text_field :start_date %>
+	</div>
+
+	<div class="text_field">
+		<%= f.label "Slut datum" %>
+		<%= f.text_field :end_date %>
+	</div>
+
+	<div class="submit">
+		<%= f.submit "Skapa projekt" %>
+	</div>
+
+<% end %>
