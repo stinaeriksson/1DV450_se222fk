@@ -1,4 +1,6 @@
 Ampta::Application.routes.draw do
+ 
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -11,15 +13,20 @@ Ampta::Application.routes.draw do
   # This route can be invoked with purchase_url(:id => product.id)
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
+  resources :sessions
   resources :projects
   resources :users
   resources :tickets
+
+  
 
   get '/projects/:id' , to: 'projects#show'
   get '/users/:id' , to: 'users#show'
   get '/tickets/:id' , to: 'tickets#show'
   delete '/projects/:id' , to:'projects#destroy'
   delete '/tickets/:id' , to:'tickets#destroy'
+
+  
 
   # Sample resource route with options:
   #   resources :products do
@@ -56,7 +63,16 @@ Ampta::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  
+  root :to => "sessions#login"
+  
+ 
+ 
+  match "login", :to => "sessions#login"
+  match "login_attempt", :to => "sessions#login_attempt"
+  match "logout", :to => "sessions#logout"
+  match "home", :to => "sessions#home"
+  
 
   # See how all your routes lay out with "rake routes"
 

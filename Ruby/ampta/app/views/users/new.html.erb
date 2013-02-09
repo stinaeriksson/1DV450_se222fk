@@ -1,0 +1,13 @@
+<h1> user - new</h1>
+
+
+
+
+<div class= "login">
+	<h2>Logga in</h2>
+	<%= form_tag(:action => 'login_attempt') do %>
+		<p>Email:</br> <%= text_field_tag(:email) %></p> 
+		<p>Password:</br> <%= password_field_tag :password %></p> 
+		<%= submit_tag("Log In") %>
+	<% end %>
+</div>
