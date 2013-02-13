@@ -1,10 +1,9 @@
-<h1>Sessions#login,</h1>
-<p>Find me in app/views/sessions/login,.html.erb</p>
+
 
 <h1> Välkommen</h1>
 
 
-<% @page_title = "UserAuth | Login" -%>
+
 
 <div class= "Login_Form">
 	<h2>Logga in</h2>
@@ -14,3 +13,7 @@
 		<%= submit_tag("Logga in") %>
 	<% end %>
 </div>
+
+<% if flash[ :notice] %>
+	<%= flash[ :notice] %>
+	<% end %>

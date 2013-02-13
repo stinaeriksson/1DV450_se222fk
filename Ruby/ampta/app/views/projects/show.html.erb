@@ -25,10 +25,22 @@
 <% else %>
 
 	<% @tickets_for_project.each do |ticket| %>
-		<%= link_to ticket.name %>
+		<ul>
+			<li>
+				<%= link_to ticket.name, ticket_path(ticket) %>
+			</li>
+		</ul>
 
 	
 	<% end %>
 	<% end %>
 
-	<%= link_to 'ta bort', project_path, :method => :delete %>
+	<%= link_to 'Lägg till ny ticket!', :controller => "tickets", :action => "new", :id => @project %>
+
+	<%= link_to 'Redigera', edit_project_path(@project) %>
+
+	<%= link_to 'ta bort', project_path,:method => :delete , :confirm => 'Är du säker?' %>
+
+	<% if flash[:notice] %>
+		<div class="notice"><%= flash[:notice] %></div>
+	<% end %>

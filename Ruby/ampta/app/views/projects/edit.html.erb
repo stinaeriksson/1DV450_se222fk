@@ -1,4 +1,4 @@
-<h1> Skapa projekt</h1>
+<h1> Redigera projekt</h1>
 
 
 <% if @project.errors.any? %>
@@ -12,6 +12,7 @@
 	<% end %>
 	
 </div>
+
 
 
 <%= form_for @project do |f| %>
@@ -34,12 +35,9 @@
 		<%= f.label "Slut datum" %>
 		<%= f.text_field :end_date %>
 	</div>
-	
 
 	<div class="submit">
-		<%= f.submit "Skapa projekt" %>
+		<%= f.submit "Spara ändringar" %>
 	</div>
-
-	<%= f.hidden_field :owner_id , :value => session[:user_id]%>
 
 <% end %>

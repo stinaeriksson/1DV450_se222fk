@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
 
-	before_filter :authenticate_user, :only => [:home, :profile, :setting]
+	before_filter :authenticate_user, :only => [:home]
 
 	before_filter :save_login_state, :only => [:login, :login_attempt]
 
@@ -15,18 +15,20 @@ class SessionsController < ApplicationController
 						redirect_to(:action => 'home')
 					else
 						
-						render "login"	
+						redirect_to :root	
 					end
 				end
 
   def home
+  	@id = @current_user.id
+  	
+	@projects_for_user = User.find(@id).projects
+
+	@tickets_for_user = User.find(@id).tickets
+		
   end
 
-  def profile
-  end
-
-  def setting
-  end
+ 
 
   def logout
 	session[:user_id] = nil

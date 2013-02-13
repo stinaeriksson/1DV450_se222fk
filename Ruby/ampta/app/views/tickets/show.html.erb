@@ -2,8 +2,14 @@
 
 <p><%= @ticket.description %></p>
 
-<p>Start: <%= @ticket.start_time %></p>
+<p>Start: <%= @ticket.start_time.strftime("Datum:%d/%m/%y Tid: %I:%M") %></p>
 
-<p>Slut: <%= @ticket.end_time %></p>
+<p>Slut: <%= @ticket.end_time.strftime("Datum:%d/%m/%y Tid: %I:%M") %></p>
 
-<%= link_to 'ta bort', ticket_path, :method => :delete %>
+<%= link_to 'Ta bort', ticket_path, :method => :delete %>
+
+<%= link_to 'Redigera', edit_ticket_path(@ticket) %>
+
+<% if flash[:notice] %>
+		<div class="notice"><%= flash[:notice] %></div>
+	<% end %>

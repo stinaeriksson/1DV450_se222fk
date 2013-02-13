@@ -1,6 +1,6 @@
 # encoding: utf-8
 class Ticket < ActiveRecord::Base
-  attr_accessible :name, :description, :status_id, :start_time, :end_time
+  attr_accessible :name, :description, :status_id, :start_time, :end_time, :user_id, :project_id
   belongs_to :user
   belongs_to :status
   belongs_to :project

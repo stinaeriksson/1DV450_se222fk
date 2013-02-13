@@ -2,13 +2,3 @@
 
 
 
-<h1> Alla ticket sför en användaren </h1>
-
-
-<% @tickets_for_user.each do |ticket| %>
-
-		<%= link_to ticket.name, ticket_path(ticket) %>
-		
-			
-
-		<% end %>	

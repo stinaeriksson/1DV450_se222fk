@@ -1,4 +1,4 @@
-<h1> Skapa ticket</h1>
+<h1> Redigera ticket</h1>
 
 <% if @ticket.errors.any? %>
 	<div id="error_messages">
@@ -24,26 +24,22 @@
 
 	<div class="text_field">
 		<%= f.label :start_time %>
-		
 		<%= f.text_field :start_time %>
 	</div>
 
 	<div class="text_field">
 		<%= f.label :end_time %>
-		<%= f.text_field :end_time %>
+		<%= f.text_field :end_time  %>
 	</div>
 
-	<%= f.hidden_field :user_id , :value => session[:user_id]%>
-	<%= f.hidden_field :project_id , :value => params[:id]%>
 
 	<div class="select">
 		<%= f.select :status_id, options_from_collection_for_select(Status.all, :id, :status_name) %>
 	</div>
 
 
-
 	<div class="submit">
-		<%= f.submit "Skapa ticket" %>
+		<%= f.submit "Spara ändringar" %>
 	</div>
 
 <% end %>
