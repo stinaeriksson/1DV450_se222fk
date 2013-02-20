@@ -1,3 +1,12 @@
+<% content_for :menu do%>
+<%= render "Partial/menu"%>
+<% end %>
+
+<% content_for :sidebar do %>
+<%= render "Partial/sidebar"%>
+<% end %>
+
+<div class="well">
 <h1> Redigera projekt</h1>
 
 
@@ -9,35 +18,50 @@
 			<li><%= msg %></li>
 		<% end %>
 	</ul>
+	</div>
 	<% end %>
 	
-</div>
-
-
 
 <%= form_for @project do |f| %>
 	<div class="text_field">
-		<%= f.label :Namn %>
+		<%= f.label "Projektets namn:" %>
 		<%= f.text_field :name %>
 	</div>
 
 	<div class="text_area">
-		<%= f.label :Beskrivning %>
-		<%= f.text_area :description %>
+		<%= f.label "Beskrivning:" %>
+		<%= f.text_area :description, :rows=>"4" %>
 	</div>
 
-	<div class="text_field">
-		<%= f.label "Start datum" %>
-		<%= f.text_field :start_date %>
+	<div class="date_field">
+		<%= f.label "Projektet startar:" %>
+	<%=f.date_select(:start_date, :start_year => 2013, :use_month_numbers => false,
+                                  :discard_day => false) %>
 	</div>
 
-	<div class="text_field">
-		<%= f.label "Slut datum" %>
-		<%= f.text_field :end_date %>
+
+	<div class="date_field">
+		<%= f.label "Projektet avslutas:" %>
+			<%=f.date_select(:end_date, :start_year => 2013, :use_month_numbers => false,
+                                  :discard_day => false) %>
+		
 	</div>
+
+		<div class="check_box">
+	
+  <%= f.label "Medlemmar i projektet:" %>
+  
+	  <% for user in @users %>
+	      
+	        <%= check_box_tag 'project[user_ids][]', user.id, @project.users.include?(user) %>
+	        <%= user.first_name %> <%= user.last_name %> 
+	      
+	  <% end %>
+    </div>
 
 	<div class="submit">
-		<%= f.submit "Spara ändringar" %>
+		<%= f.submit "Spara ändringar", :class=>"btn" %>
 	</div>
 
 <% end %>
+</div>

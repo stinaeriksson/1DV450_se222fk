@@ -1,6 +1,8 @@
+# encoding: utf-8
 class SessionsController < ApplicationController
 
 	before_filter :authenticate_user, :only => [:home]
+
 
 	before_filter :save_login_state, :only => [:login, :login_attempt]
 
@@ -14,18 +16,18 @@ class SessionsController < ApplicationController
 						session[:user_id] = authorized_user.id
 						redirect_to(:action => 'home')
 					else
-						
+						flash[:notice] = "Fel email eller lösenord."
 						redirect_to :root	
 					end
 				end
 
   def home
   	@id = @current_user.id
-  	
-	@projects_for_user = User.find(@id).projects
 
+	@projects = User.find(@id).projects
+	@admin_projects = Project.where("owner_id = ?", @id)
 	@tickets_for_user = User.find(@id).tickets
-		
+		#@project = @current_user.projects.find(params[:id])
   end
 
  

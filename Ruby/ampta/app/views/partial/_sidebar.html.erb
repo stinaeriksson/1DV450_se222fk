@@ -1,0 +1,45 @@
+
+<div class="well">	
+	<ul class="nav nav-list">
+		<li class="nav-header">Projekt du har skapat</li>
+			
+			<% @admin_projects.each do |project| %>
+				
+				<li>
+				<%= link_to project.name, project_path(project) %>
+				</li>
+
+			<% end %>
+			
+	</ul>
+
+	<ul class="nav nav-list">
+		<li class="nav-header">Projekt du är medlem i</li>
+			
+			<% @projects.each do |project| %>
+				
+				<li>
+				<%= link_to project.name, project_path(project) %>
+				</li>
+
+			<% end %>
+			
+	</ul>
+
+	<ul class="nav nav-list">
+		<li class="nav-header">Dina senaste 10 tickets</li>
+
+			<% if @tickets_for_user.empty? %>
+  				<p> Du har inga tickets </p>
+			<% else %>
+
+				<% @tickets_for_user.each do |ticket| %>
+					<li>
+						<%= link_to ticket.name, ticket_path(ticket) %>
+					</li>
+				<% end %>
+			<% end %>
+
+</div>
+
+	

@@ -1,7 +1,14 @@
-<h1> Show user </h1>
+<% content_for :menu do%>
+<%= render "Partial/menu"%>
+<% end %>
 
+<% content_for :sidebar do %>
+<%= render "Partial/sidebar"%>
+<% end %>
+
+<div class="well">
 <h2><%= @user.first_name %> <%= @user.last_name %></h2> 
 
-<p><%= @user.email %></p>
-
+<p><strong>Email: </strong><%= @user.email %></p>
+</div>
 

@@ -1,8 +1,17 @@
-<h1> Redigera ticket</h1>
+<% content_for :menu do%>
+<%= render "Partial/menu"%>
+<% end %>
+
+<% content_for :sidebar do %>
+<%= render "Partial/sidebar"%>
+<% end %>
+
+<div class="well">
+<h1> Editera ticket</h1>
 
 <% if @ticket.errors.any? %>
 	<div id="error_messages">
-		<h2><%= pluralize(@ticket.errors.count, "fel", "fel") %> i formuläret gjorde att ticketen inte kunde sparas:</h2>
+		<h3><%= pluralize(@ticket.errors.count, "fel", "fel") %> i formuläret gjorde att ticketen inte kunde sparas:</h3>
 	<ul>
 		<% @ticket.errors.each do |attr,msg| %>
 			<li><%= msg %></li>
@@ -11,35 +20,39 @@
 </div>
 <% end %>
 
+
 <%= form_for @ticket do |f| %>
 	<div class="text_field">
-		<%= f.label :Namn %>
+		<%= f.label "Namn:" %>
 		<%= f.text_field :name %>
 	</div>
 
 	<div class="text_area">
-		<%= f.label :Beskrivning %>
+		<%= f.label "Beskrivning:" %>
 		<%= f.text_area :description %>
 	</div>
 
-	<div class="text_field">
-		<%= f.label :start_time %>
-		<%= f.text_field :start_time %>
+	<div class="date_field">
+		<%= f.label "Startar:" %>
+			<%=f.datetime_select(:start_time, :start_year => 2013, :prompt => true) %>
+		
 	</div>
 
-	<div class="text_field">
-		<%= f.label :end_time %>
-		<%= f.text_field :end_time  %>
+	<div class="date_field">
+		<%= f.label "Slutar:" %>
+			<%=f.datetime_select(:end_time, :start_year => 2013, :prompt => true) %>
+		
 	</div>
 
-
+	<%= f.label "Status:" %>
 	<div class="select">
 		<%= f.select :status_id, options_from_collection_for_select(Status.all, :id, :status_name) %>
 	</div>
 
 
 	<div class="submit">
-		<%= f.submit "Spara ändringar" %>
+		<%= f.submit "Spara ändringar", :class => "btn" %>
 	</div>
 
 <% end %>
+</div>

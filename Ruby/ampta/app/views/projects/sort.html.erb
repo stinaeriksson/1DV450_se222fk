@@ -7,11 +7,12 @@
 <% end %>
 
 <div class="well">
-<h1> Alla projekt i systemet </h1>
+<h1> Projekt med tickets </h1>
 
-<% @all_projects.each do |project| %>
 
-		
+<% @project.each do |project| %>
+
+	<% if !project.tickets.blank? %>
 <table class="table">
 
 	<tbody>
@@ -30,18 +31,11 @@
 				<span class="label"> Medlem </span></td>
 			</div>
 				
-				
+				<% end %>
 				<% end %>
 			<% end %>
 			<% end %>
 		</tr>
 	</tbody>
 </table>
-
-		
-		
 <% end %>
-	<div class="btn">
-		<%= link_to 'Visa bara projekt med tickets', :action => "sort" %>
-	</div>
-</div>

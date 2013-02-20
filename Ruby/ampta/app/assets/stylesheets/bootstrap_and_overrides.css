@@ -6,4 +6,71 @@
   =require twitter-bootstrap-static/fontawesome
   */
 
+  @import "twitter/bootstrap/bootstrap";
+@import 'bootstrap.less';
+
+
+body { 
+	
+}
+
+.span3 {
+	height:1000px;
+}
+.login{
+	width: 260px;
+	margin-top: 100px;
+	margin-left: 100px;
+}
+.login h2 {
+	margin-bottom: 50px;
+}
+.login .btn {
+	float: right;
+	margin-top: 30px;
+}
+.pull-right{
+	float: right;
+	padding: 7px; 
+	margin-top: 4px;
+}
+.error-login{
+	width: 260px;
+	margin-left: 100px;
+}
+.flash{
+	width: 350px;
+	margin-top: 20px;
+}
+h1 {
+	margin-bottom: 30px;
+}
+
+.date_field {
+	display: inline;
+	
+}
+.check_box{
+	display: block;
+	margin-bottom: 30px;
+	margin-top: 20px;
+	
+}
+.text_field {
+	display: block;
+	
+}
+.well {
+	min-height: 350px;
+	padding-left: 20px;
+}
+ul {
+	list-style: none;
+}
+#buttons {
+	margin-top: 20px;
+}
+.submit {
+	margin-top: 20px;
+}
 

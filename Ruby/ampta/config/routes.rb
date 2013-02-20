@@ -78,6 +78,7 @@ Ampta::Application.routes.draw do
   match "login_attempt", :to => "sessions#login_attempt"
   match "logout", :to => "sessions#logout"
   match "home", :to => "sessions#home"
+  match "sort", :to => "projects#sort" 
  
 
   # See how all your routes lay out with "rake routes"

@@ -1,64 +1,19 @@
+<% content_for :menu do%>
+<%= render "Partial/menu"%>
+<% end %>
 
-<div class="navbar">
-	<div class="navbar-inner">
-	
-      		<a class="brand" href="#">AMPTA</a>
-      		
-      			<ul class="nav">
+<% content_for :sidebar do %>
+<%= render "Partial/sidebar"%>
 
-      				<li><a href ="/home/">Start</a></li>
-          			<li><%= link_to "Alla Projekt", projects_path %></li>
-          			<li><%= link_to "Skapa projekt", new_project_path  %></li>
-          			<li> Inloggad som: <%=@current_user.first_name%> </li>
-          			<li><%= link_to 'Logga ut', :action => 'logout'  %> </li>
-
-        		</ul>
- </div>
-
-<div class ="row">
-
-	<div class="span3">
-		<div class="sidebar">
-			<p> Dina projekt</p>
-			
-			<% @projects_for_user.each do |project| %>
-				<ul>
-					<li>
-						<%= link_to project.name, project_path(project) %>
-					</li>
-				</ul>
 			<% end %>
-
-			<p> Dina senaste 10 tickets</p>
-
-			<% if @tickets_for_user.empty? %>
-  				<p> Du har inga tickets </p>
 	
-			<% else %>
-
-	<% @tickets_for_user.each do |ticket| %>
-		<ul>
-			<li>
-				<%= link_to ticket.name, ticket_path(ticket) %>
-			</li>
-		</ul>
-
-	
-	<% end %>
-	<% end %>
 			
-
-		</div>
-	</div>
-
-	<div class="span9">
-		<div class="main">
+			<div class="well">
 			<h2> Välkommen till Project Manager </h2>
-		</div>
-	</div>
+				</div>
+				
 	
 
-</div>
 
 
 
