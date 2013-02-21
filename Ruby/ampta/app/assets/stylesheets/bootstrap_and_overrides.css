@@ -67,8 +67,8 @@ h1 {
 ul {
 	list-style: none;
 }
-#buttons {
-	margin-top: 20px;
+.buttons {
+	margin-top: 30px;
 }
 .submit {
 	margin-top: 20px;

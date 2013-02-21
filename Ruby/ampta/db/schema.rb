@@ -11,16 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130208202332) do
+ActiveRecord::Schema.define(:version => 20130221105452) do
 
   create_table "projects", :force => true do |t|
-    t.string   "name"
-    t.text     "description"
+    t.string   "name",        :null => false
+    t.text     "description", :null => false
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-    t.date     "start_date"
-    t.date     "end_date"
-    t.integer  "owner_id"
+    t.date     "start_date",  :null => false
+    t.date     "end_date",    :null => false
+    t.integer  "owner_id",    :null => false
   end
 
   add_index "projects", ["owner_id"], :name => "index_projects_on_owner_id"
@@ -39,11 +39,11 @@ ActiveRecord::Schema.define(:version => 20130208202332) do
   end
 
   create_table "tickets", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "project_id"
+    t.integer  "user_id",     :null => false
+    t.integer  "project_id",  :null => false
     t.integer  "status_id"
-    t.string   "name"
-    t.text     "description"
+    t.string   "name",        :null => false
+    t.text     "description", :null => false
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.datetime "start_time"

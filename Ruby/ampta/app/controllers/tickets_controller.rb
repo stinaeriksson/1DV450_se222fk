@@ -7,7 +7,6 @@ class TicketsController < ApplicationController
 	end
 
 	def show
-		
 		@ticket = Ticket.find(params[:id])
 		@id = @ticket.status_id;
 		@status = Status.where("id = ?", @id)
@@ -35,19 +34,20 @@ class TicketsController < ApplicationController
 			redirect_to :action => "show", :id => @ticket.id
 		end
 
-
 	end
 
 	def new
+		@user_id = @current_user.id
 		@project = params[:project_id]
 		@ticket = Ticket.new
 	end
 
 	def create
-		
+		@user_id = @current_user.id
 		@ticket = Ticket.new(params[:ticket])
 		
 		if @ticket.save
+			flash[:notice] = "Ticket skapad!"
 			redirect_to :action => "show", :id => @ticket.id
 		else
 			@project = params[:ticket][:project_id]
@@ -63,22 +63,19 @@ class TicketsController < ApplicationController
 		@user_id = @ticket.user_id
 		@project_id = @ticket.project_id
 
-		
 		case
-				when @project_id == @current_user.projects.find_by_id(@project_id)
-						return true
+			when @project_id == @current_user.projects.find_by_id(@project_id)
+				return true
 
-				when @id == @user_id
-					return true
+			when @id == @user_id
+				return true
 					
-				else
+			else
 					
-					flash[:notice] = "Du har ej rättigheter att redigera ticket"
-					redirect_to :action => "show", :id => @ticket.id
+			flash[:notice] = "Du har ej rättigheter att redigera ticket"
+			redirect_to :action => "show", :id => @ticket.id
 			
-				end  
-		
-
+		end  
 	end
 
 	def update
@@ -91,7 +88,4 @@ class TicketsController < ApplicationController
 		end
 	end
 
-	
-
-  
 end

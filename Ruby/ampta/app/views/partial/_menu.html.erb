@@ -1,12 +1,13 @@
+
 	<div class="navbar">
-	<div class="navbar-inner">
+	     <div class="navbar-inner">
 	
       		<a class="brand" href="/home/">AMPTA</a>
       		
       			<ul class="nav">
-              <li class="divider-vertical"></li>
-      				<li><a href ="/home/">Start</a></li>
-              <li class="divider-vertical"></li>
+                <li class="divider-vertical"></li>
+      				  <li><a href ="/home/">Start</a></li>
+                <li class="divider-vertical"></li>
           			<li><%= link_to "Alla Projekt", :action => 'index', :controller => 'projects' %></li>
                 <li class="divider-vertical"></li>
           			<li><%= link_to "Skapa projekt", new_project_path  %></li>
@@ -14,13 +15,9 @@
                
         		</ul>
 
-          
-                 
-                <p class="pull-right"><%= link_to 'Logga ut', :action => 'logout', :controller => 'sessions'  %> </p>
-                <p class="pull-right"> Inloggad som <%=@current_user.first_name%> </p>
+            <p class="pull-right"><%= link_to 'Logga ut', :action => 'logout', :controller => 'sessions'  %> </p>
+            <p class="pull-right"> Inloggad som <%=@current_user.first_name%> </p>
              
-              
-          </div>
+      </div>
           
-          
- </div>
+</div>

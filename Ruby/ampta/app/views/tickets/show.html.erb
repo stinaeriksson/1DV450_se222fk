@@ -6,29 +6,31 @@
 <%= render "Partial/sidebar"%>
 <% end %>
 
+<div class= "well">
+	<h1><%= @ticket.name %></h1> 
 
-<h1><%= @ticket.name %></h1> 
+	<p><%= @ticket.description %></p>
 
-<p><%= @ticket.description %></p>
+	<% if @ticket.start_time%>
+		<p><strong>Start:</strong> <%= @ticket.start_time.strftime("%d/%m/%Y Kl: %I:%M") %></p>
+	<% end %>
 
-
-<% if @ticket.start_time%>
-	<p>Start: <%= @ticket.start_time.strftime("Datum:%d/%m/%y Tid: %I:%M") %></p>
-<% end %>
-
-<% if @ticket.end_time%>
-<p>Slut: <%= @ticket.end_time.strftime("Datum:%d/%m/%y Tid: %I:%M") %></p>
-<% end %>
-<p>Status: <%= @status_name %> </p>
-
-<p>Ägare: <%= @first_name %> <%= @last_name %></p>
-
-<%= link_to 'Ta bort', ticket_path, :method => :delete, :confirm => 'Är du säker?' %>
-
-<%= link_to 'Redigera', edit_ticket_path(@ticket) %>
-<div class="flash">
-<% if flash[:notice] %>
-		<div class="alert alert-success"><%= flash[:notice] %></div>
-<% end %>
-</div>
+	<% if @ticket.end_time%>
+		<p><strong>Slut:</strong> <%= @ticket.end_time.strftime("%d/%m/%Y Kl: %I:%M") %></p>
+	<% end %>
 	
+	<p><strong>Status:</strong> <%= @status_name %> </p>
+
+	<p><strong>Ägare:</strong> <%= @first_name %> <%= @last_name %></p>
+
+	<div class="buttons">
+		<%= link_to 'Editera ticket', edit_ticket_path(@ticket), :class=>"btn" %>
+		<%= link_to 'Ta bort ticket', ticket_path, :method => :delete, :confirm => 'Är du säker?', :class =>"btn" %>
+	</div>
+
+	<div class="flash">
+		<% if flash[:notice] %>
+			<div class="alert alert-success"><%= flash[:notice] %></div>
+		<% end %>
+	</div>
+</div>	

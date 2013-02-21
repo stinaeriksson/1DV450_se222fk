@@ -9,7 +9,6 @@ class ProjectsController < ApplicationController
 	end
 	
 	def show
-
 		@project = Project.find(params[:id])
 		@users_in_project = @project.users
 		@tickets_for_project =@project.tickets
@@ -20,28 +19,28 @@ class ProjectsController < ApplicationController
 		@project = Project.find(params[:id])
 		@pid = @project.owner_id
 		
-
 		if @id == @pid
 			@project = Project.find(params[:id])
 			@project.destroy
-			redirect_to :root
+			flash[:notice] = "Projektet borttaget!"
+			redirect_to :controller => "sessions", :action => "home"
 		else
 			flash[:error] = "Du har ej rättigheter att ta bort projektet"
 			redirect_to :action => "show", :id => @project.id
 		end
 
-		
 	end
 
 	def new
 		@project = Project.new
 		@users = User.all
+		@owner_id = @current_user.id
 	end
 
 
 	def create
+		@owner_id = @current_user.id
 		@users = User.all
-
 		@project = Project.new(params[:project])
 
 		if @project.save
@@ -58,14 +57,10 @@ class ProjectsController < ApplicationController
 		@project = Project.find(params[:id])
 		@pid = @project.owner_id
 		
-
 		unless @id == @pid
-			
 			flash[:error] = "Du har ej rättigheter att redigera projektet"
 			redirect_to :action => "show", :id => @project.id
-			
 		end
-
 	end
 
 	def update
@@ -73,7 +68,6 @@ class ProjectsController < ApplicationController
 		@users = User.all
 		@project = Project.find(params[:id])
  		
-		
 		if @project.update_attributes(params[:project])
 			flash[:notice] = "Projektet uppdaterat!"
 			redirect_to project_path

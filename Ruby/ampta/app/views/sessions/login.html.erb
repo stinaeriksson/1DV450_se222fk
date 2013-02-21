@@ -1,22 +1,19 @@
 
-
 <div class="login">
-<div class= "well">
-	<h2 class="form-signin-heading">Logga in</h2>
-	<%= form_tag(:action => 'login_attempt') do %>
-		<p>Email:</br> <%= text_field_tag(:email) %></p> 
-		<p>Lösenord:</br> <%= password_field_tag :password %></p> 
-		
-		<%= submit_tag("Logga in", :class => "btn btn-primary") %>
-	<% end %>
-	
-</div>
+	<div class= "well">
+		<h2 class="form-signin-heading">Logga in</h2>
+		<%= form_tag(:action => 'login_attempt') do %>
+			<p>Email:</br> <%= text_field_tag(:email) %></p> 
+			<p>Lösenord:</br> <%= password_field_tag :password %></p> 
+			<%= submit_tag("Logga in", :class => "btn btn-primary") %>
+		<% end %>
+	</div>
 </div>
 
 <div class="error-login">
-<% if flash[ :notice] %>
-<div class="alert alert-error">
-	<%= flash[ :notice] %>
+	<% if flash[ :notice] %>
+	<div class="alert alert-error">
+		<%= flash[ :notice] %>
 	</div>
 	<% end %>
 </div>

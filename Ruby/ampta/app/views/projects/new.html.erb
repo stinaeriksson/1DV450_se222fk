@@ -1,6 +1,4 @@
 
-	
-
 <% content_for :menu do%>
 <%= render "Partial/menu"%>
 <% end %>
@@ -9,61 +7,57 @@
 <%= render "Partial/sidebar"%>
 <% end %>
 
-
-
-	
 <div class="well">
-<h1> Skapa projekt</h1>
-<%= form_for @project do |f| %>
-	<div class="text_field">
-		<%= f.label "Projektets namn:" %>
-		<%= f.text_field :name %>
-	</div>
-	<div class="text_field">
-	<%= f.label "Beskrivning:" %>
-	<%= f.text_area :description, :rows =>"4" %>
-	</div>
+	<h1> Skapa projekt</h1>
+	
 	<% if @project.errors.any? %>
-	<div id="error_messages">
-		<h3><%= pluralize(@project.errors.count, "fel", "fel") %> i formuläret gjorde att projektet inte kunde sparas:</h3>
-	<ul>
-		<% @project.errors.each do |attr,msg| %>
-			<li><%= msg %></li>
-		<% end %>
-	</ul>
-	</div>
+		<div id="error_messages">
+			<h3 class="text-error"><%= pluralize(@project.errors.count, "fel", "fel") %> i formuläret gjorde att projektet inte kunde sparas:</h3>
+			<ul>
+				<% @project.errors.each do |attr,msg| %>
+				<li class="text-error"><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
 	<% end %>
-	
-	<div class="date_field">
-		<%= f.label "Projektet startar:" %>
-	<%=f.date_select(:start_date, :start_year => 2013, :use_month_numbers => false,
-                                  :discard_day => false) %>
-	</div>
-
-
-	<div class="date_field">
-		<%= f.label "Projektet avslutas:" %>
-			<%=f.date_select(:end_date, :start_year => 2013, :use_month_numbers => false,
-                                  :discard_day => false) %>
 		
-	</div>
-	<div class="check_box">
-	
-  <%= f.label "Medlemmar i projektet:" %>
-	  <% for user in @users %>
-	      	
-	        <%= check_box_tag 'project[user_ids][]', user.id, @project.users.include?(user) %>
-	        <%= user.first_name %> <%= user.last_name %> 
-	      
-	  <% end %>
-    
-</div>
-	
-		<%= f.submit "Skapa projekt", :class=>"btn" %>
-	
+	<%= form_for @project do |f| %>
+		<div class="text_field">
+			<%= f.label "Projektets namn:" %>
+			<%= f.text_field :name %>
+		</div>
 
-	<%= f.hidden_field :owner_id , :value => session[:user_id]%>
-<% end %>
+		<div class="text_field">
+			<%= f.label "Beskrivning:" %>
+			<%= f.text_area :description, :rows =>"4" %>
+		</div>
+
+		<div class="date_field">
+			<%= f.label "Projektet startar:" %>
+			<%=f.date_select(:start_date, :start_year => 2013, :use_month_numbers => false,
+	                                  :discard_day => false, :prompt => true) %>
+		</div>
+
+
+		<div class="date_field">
+			<%= f.label "Projektet avslutas:" %>
+			<%=f.date_select(:end_date, :start_year => 2013, :use_month_numbers => false,
+	                                  :discard_day => false, :prompt => true) %>
+		</div>
+		
+		<div class="check_box">
+			<%= f.label "Medlemmar i projektet:" %>
+		  	<% for user in @users %>
+		      	<%= check_box_tag 'project[user_ids][]', user.id, @project.users.include?(user) %>
+		        <%= user.first_name %> <%= user.last_name %> 
+		    <% end %>
+	    
+		</div>
+		
+		<%= f.submit "Skapa projekt", :class=>"btn" %>
+		
+		<%= f.hidden_field :owner_id , :value => @owner_id %>
+	<% end %>
 
 </div>
 

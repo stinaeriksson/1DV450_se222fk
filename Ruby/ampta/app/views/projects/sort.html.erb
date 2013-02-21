@@ -7,35 +7,37 @@
 <% end %>
 
 <div class="well">
-<h1> Projekt med tickets </h1>
-
-
-<% @project.each do |project| %>
+	
+	<h1> Projekt med tickets </h1>
+	
+	<% @project.each do |project| %>
 
 	<% if !project.tickets.blank? %>
-<table class="table">
+	
+	<table class="table">
+		<tbody>
+			<tr>
+				<td><%= link_to project.name, project_path(project) %>
 
-	<tbody>
-		<tr>
-			<td><%= link_to project.name, project_path(project) %>
-
-			<% if project.owner_id == @current_user.id %>
-			<div class="pull-right">
-				<span class="label label-inverse">Admin</span>
-			</div>
-			<% elsif %>
-
-			<% project.users.each do |user| %>
-				<% if user.id == @current_user.id %>
-			<div class="pull-right">	
-				<span class="label"> Medlem </span></td>
-			</div>
+				<% if project.owner_id == @current_user.id %>
+				<div class="pull-right">
+					<span class="label label-inverse">Admin</span>
+				</div>
 				
+				<% elsif %>
+
+				<% project.users.each do |user| %>
+				<% if user.id == @current_user.id %>
+				<div class="pull-right">	
+					<span class="label"> Medlem </span></td>
+				</div>
+					
 				<% end %>
 				<% end %>
-			<% end %>
-			<% end %>
-		</tr>
-	</tbody>
-</table>
-<% end %>
+				<% end %>
+		<% end %>
+			</tr>
+		</tbody>
+	</table>
+	<% end %>
+</div>

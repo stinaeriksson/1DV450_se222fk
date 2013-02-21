@@ -7,61 +7,53 @@
 <% end %>
 
 <div class="well">
-<h1> Redigera projekt</h1>
+	<h1> Redigera projekt</h1>
 
-
-<% if @project.errors.any? %>
-	<div id="error_messages">
-		<h2><%= pluralize(@project.errors.count, "fel", "fel") %> i formuläret gjorde att projektet inte kunde sparas:</h2>
-	<ul>
-		<% @project.errors.each do |attr,msg| %>
-			<li><%= msg %></li>
-		<% end %>
-	</ul>
-	</div>
+	<% if @project.errors.any? %>
+		<div id="error_messages">
+			<h2><%= pluralize(@project.errors.count, "fel", "fel") %> i formuläret gjorde att projektet inte kunde sparas:</h2>
+		<ul>
+			<% @project.errors.each do |attr,msg| %>
+				<li><%= msg %></li>
+			<% end %>
+		</ul>
+		</div>
 	<% end %>
-	
-
-<%= form_for @project do |f| %>
-	<div class="text_field">
-		<%= f.label "Projektets namn:" %>
-		<%= f.text_field :name %>
-	</div>
-
-	<div class="text_area">
-		<%= f.label "Beskrivning:" %>
-		<%= f.text_area :description, :rows=>"4" %>
-	</div>
-
-	<div class="date_field">
-		<%= f.label "Projektet startar:" %>
-	<%=f.date_select(:start_date, :start_year => 2013, :use_month_numbers => false,
-                                  :discard_day => false) %>
-	</div>
-
-
-	<div class="date_field">
-		<%= f.label "Projektet avslutas:" %>
-			<%=f.date_select(:end_date, :start_year => 2013, :use_month_numbers => false,
-                                  :discard_day => false) %>
 		
-	</div>
+	<%= form_for @project do |f| %>
+	
+		<div class="text_field">
+			<%= f.label "Projektets namn:" %>
+			<%= f.text_field :name %>
+		</div>
+
+		<div class="text_area">
+			<%= f.label "Beskrivning:" %>
+			<%= f.text_area :description, :rows=>"4" %>
+		</div>
+
+		<div class="date_field">
+			<%= f.label "Projektet startar:" %>
+			<%=f.date_select(:start_date, :use_month_numbers => false) %>
+		</div>
+
+		<div class="date_field">
+			<%= f.label "Projektet avslutas:" %>
+			<%=f.date_select(:end_date, :use_month_numbers => false) %>
+		</div>
 
 		<div class="check_box">
-	
-  <%= f.label "Medlemmar i projektet:" %>
-  
-	  <% for user in @users %>
-	      
-	        <%= check_box_tag 'project[user_ids][]', user.id, @project.users.include?(user) %>
-	        <%= user.first_name %> <%= user.last_name %> 
-	      
-	  <% end %>
-    </div>
+			<%= f.label "Medlemmar i projektet:" %>
+	  
+		 	<% for user in @users %>
+		      	<%= check_box_tag 'project[user_ids][]', user.id, @project.users.include?(user) %>
+		        <%= user.first_name %> <%= user.last_name %> 
+		    <% end %>
+	    </div>
 
-	<div class="submit">
-		<%= f.submit "Spara ändringar", :class=>"btn" %>
-	</div>
+		<div class="submit">
+			<%= f.submit "Spara ändringar", :class=>"btn" %>
+		</div>
 
-<% end %>
+	<% end %>
 </div>

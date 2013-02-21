@@ -2,26 +2,36 @@
 <div class="well">	
 	<ul class="nav nav-list">
 		<li class="nav-header">Projekt du har skapat</li>
-			
-			<% @admin_projects.each do |project| %>
-				
-				<li>
-				<%= link_to project.name, project_path(project) %>
-				</li>
 
+			<% if @admin_projects.empty? %>
+  				<p> Du har inte skapat några projekt </p>
+			<% else %>
+			
+				<% @admin_projects.each do |project| %>
+					
+					<li>
+					<%= link_to project.name, project_path(project) %>
+					</li>
+
+				<% end %>
 			<% end %>
 			
 	</ul>
 
 	<ul class="nav nav-list">
 		<li class="nav-header">Projekt du är medlem i</li>
-			
-			<% @projects.each do |project| %>
-				
-				<li>
-				<%= link_to project.name, project_path(project) %>
-				</li>
 
+			<% if @projects.empty? %>
+  				<p> Du är inte medlem i några projekt </p>
+			<% else %>
+			
+				<% @projects.each do |project| %>
+					
+					<li>
+					<%= link_to project.name, project_path(project) %>
+					</li>
+
+				<% end %>
 			<% end %>
 			
 	</ul>
