@@ -1,7 +1,7 @@
 # encoding: utf-8
 class ProjectsController < ApplicationController
 	before_filter :authenticate_user, :home
-	before_filter :control_user, :only => [:show]
+	before_filter :control_user, :except => [:index, :new, :sort]
 
 	def index
 		@all_projects = Project.all

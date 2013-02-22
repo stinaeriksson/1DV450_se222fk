@@ -12,7 +12,8 @@ Ampta::Application.routes.draw do
   get '/projects/:id' , to: 'projects#show'
   get '/users/:id' , to: 'users#show'
   get '/tickets/:id' , to: 'tickets#show'
-  
+ 
+
   delete '/projects/:id' , to:'projects#destroy'
   delete '/tickets/:id' , to:'tickets#destroy'
 
@@ -26,8 +27,7 @@ Ampta::Application.routes.draw do
   match "logout", :to => "sessions#logout"
   match "home", :to => "sessions#home"
   match "sort", :to => "projects#sort" 
- 
-
+  
   # See how all your routes lay out with "rake routes"
 
 end

@@ -1,6 +1,8 @@
 # encoding: utf-8
 class TicketsController < ApplicationController
 	before_filter :authenticate_user, :home
+	before_filter :control_user_new, :only =>[:new, :update]
+	before_filter :control_user_show, :only => [:show]
 
 	def index
 			
@@ -38,7 +40,7 @@ class TicketsController < ApplicationController
 
 	def new
 		@user_id = @current_user.id
-		@project = params[:project_id]
+		@project = params[:id]
 		@ticket = Ticket.new
 	end
 
@@ -50,7 +52,7 @@ class TicketsController < ApplicationController
 			flash[:notice] = "Ticket skapad!"
 			redirect_to :action => "show", :id => @ticket.id
 		else
-			@project = params[:ticket][:project_id]
+			@project = params[:ticket][:id]
 			render :action => "new", :project_id => @project
 			
 		end
