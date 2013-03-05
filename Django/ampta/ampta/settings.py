@@ -71,6 +71,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+     "/Users/stinaeriksson/1DV450_se222fk/Django/ampta/ampta_app/static/",
 )
 
 # List of finder classes that know how to find static files in
@@ -110,12 +111,15 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    "/Users/stinaeriksson/1DV450_se222fk/Django/ampta/ampta_app/templates"
 )
 
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+  
+
     #'django.contrib.sites',
     #'django.contrib.messages',
     #'django.contrib.staticfiles',

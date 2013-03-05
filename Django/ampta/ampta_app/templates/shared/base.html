@@ -1,0 +1,21 @@
+<DOCTYPE html>
+<html>
+	<head>
+		<title>
+			{% block title %}
+				AMPTA
+			{% endblock %}
+		</title>
+			{% block stylesheet %}
+				<link href="{{ STATIC_URL }}/bootstrap/css/bootstrap.css" rel="stylesheet" />
+			{% endblock %}
+	</head>
+
+	<body>
+		<div id="content">
+			{% block content %}
+				<h1>content</h1>
+			{% endblock %}
+		</div>
+	</body>
+</html>
