@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.encoding import iri_to_uri
+from django.forms import ModelForm
+from django.forms.extras.widgets import SelectDateWidget
 
 class Project(models.Model):
 	project_name = models.CharField(max_length = 40)
@@ -31,3 +34,8 @@ class Ticket(models.Model):
 		return self.ticket_name
 	
 
+class ProjectForm(ModelForm):
+
+	class Meta:
+		model = Project
+		widgets = {'start_date' : SelectDateWidget(), 'end_date' : SelectDateWidget()}

@@ -1,0 +1,15 @@
+{% extends "shared/base.html" %}
+
+{% block title %}
+	Lägg till projekt
+{% endblock %}
+
+<h1> Lägg till projekt </h1>
+
+{% block content %}
+	<form action="{{project_add}}" method="POST"> {% csrf_token %}
+		{{ form.as_p }}
+
+		<input type="submit" value="Lägg till projekt" />
+	</form> 
+{% endblock %}

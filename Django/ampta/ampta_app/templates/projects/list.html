@@ -10,8 +10,11 @@
 <div class="project">
 
 	{% for project in projects %}
-		<h2>{{ project.project_name}} </h2>
-		
+	<ul>
+		<li>
+			<a href="{% url project_show project.id %}"> {{ project }} </a>
+		</li>
+	</ul>	
 	{% endfor %}
 </div>
 {% endblock %}

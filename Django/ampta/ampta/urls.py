@@ -12,9 +12,10 @@ urlpatterns = patterns('',
 
     #####projects
     url(r'^projects/$', 'ampta_app.views.project_list', name="project_list"),
-    #url(r'^project/add$', 'ampta_app.views.project_add', name="project_add"),
-    #url(r'^project/(?P<project_id>\d+)/delete/$', 'ampta_app.views.project_delete', name="project_delete"),
-    #url(r'^project/(?P<project_id>\d+)/edit/$', 'ampta_app.views.project_edit', name="project_edit"),
+    url(r'^project/add$', 'ampta_app.views.project_add', name="project_add"),
+    url(r'^project/(?P<project_id>\d+)/show/$', 'ampta_app.views.project_show', name="project_show"),
+    url(r'^project/(?P<project_id>\d+)/delete/$', 'ampta_app.views.project_delete', name="project_delete"),
+    url(r'^project/(?P<project_id>\d+)/edit/$', 'ampta_app.views.project_edit', name="project_edit"),
 
 
     # Uncomment the admin/doc line below to enable admin documentation:
