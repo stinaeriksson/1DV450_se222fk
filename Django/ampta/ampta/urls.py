@@ -10,6 +10,11 @@ urlpatterns = patterns('',
     # url(r'^$', 'ampta.views.home', name='home'),
     # url(r'^ampta/', include('ampta.foo.urls')),
 
+    #####login
+    url(r'^login/$', 'ampta_app.views.login_user', name="login"),
+    url(r'^logout/$', 'ampta_app.views.logout_user', name="logout"),
+    url(r'^permission/error/$', 'ampta_app.views.error_permission', name="error_permission"),
+
     #####projects
     url(r'^projects/$', 'ampta_app.views.project_list', name="project_list"),
     url(r'^project/add$', 'ampta_app.views.project_add', name="project_add"),

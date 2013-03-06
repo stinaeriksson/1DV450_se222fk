@@ -1,4 +1,5 @@
 {% extends 'shared/base.html' %}
+{% load custom_filters %}
 
 {% block title %}
 	Projekt
@@ -34,9 +35,12 @@
 		</p>
 	
 </div>
-	<a href="{% url project_edit project.id %}"> Editera projekt </a>
-	<a href="{% url project_delete project.id %}"> Ta bort projekt </a>
-	
+	{% if project|ownership:user %}
+		<a href="{% url project_edit project.id %}"> Editera projekt </a>
+		<a href="{% url project_delete project.id %}"> Ta bort projekt </a>
+	{% else %}
+	<p> inga rattigheter</p>
+	{% endif %}
 
 {% endblock %}
 

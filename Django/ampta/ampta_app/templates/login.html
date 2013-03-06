@@ -1,0 +1,23 @@
+{% extends "shared/base.html" %}
+
+{% block title %}
+	Logga in
+{% endblock %}
+
+{% block menu %}
+
+{% endblock %}
+
+{% block sidebar %}
+{% endblock %}
+
+
+{% block content %}
+
+<h1> Logga in </h1>
+	<form action="{{login_user}}" method="POST"> {% csrf_token %}
+		{{ form.as_p }}
+
+		<input type="submit" value="Logga in" />
+	</form> 
+{% endblock %}

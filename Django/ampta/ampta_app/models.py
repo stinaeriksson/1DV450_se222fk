@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.utils.encoding import iri_to_uri
 from django.forms import ModelForm
 from django.forms.extras.widgets import SelectDateWidget
+from django import forms
 
 class Project(models.Model):
 	project_name = models.CharField(max_length = 40)
@@ -14,6 +15,14 @@ class Project(models.Model):
 
 	def __unicode__(self):
 		return self.project_name
+
+	def owned_by_user(self, user):
+		return self.owner == user
+
+	class Meta:
+		permissions = (
+			("can_add_project", "Can add project"),
+		)
 
 class Status(models.Model):
 	status_name = models.CharField(max_length = 20)
@@ -39,3 +48,7 @@ class ProjectForm(ModelForm):
 	class Meta:
 		model = Project
 		widgets = {'start_date' : SelectDateWidget(), 'end_date' : SelectDateWidget()}
+
+class LoginForm(forms.Form):
+	username = forms.CharField(max_length = 20)
+	password = forms.CharField(max_length = 20, widget=forms.PasswordInput)

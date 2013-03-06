@@ -6,16 +6,73 @@
 				AMPTA
 			{% endblock %}
 		</title>
-			{% block stylesheet %}
-				<link href="{{ STATIC_URL }}/bootstrap/css/bootstrap.css" rel="stylesheet" />
-			{% endblock %}
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">	
+		<link href="{{ STATIC_URL }}bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
+			
+			
+    <link href="{{ STATIC_URL }}bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+			
 	</head>
 
 	<body>
-		<div id="content">
-			{% block content %}
-				<h1>content</h1>
-			{% endblock %}
+		{% block menu %}
+
+			<div class="navbar">
+			     <div class="navbar-inner">
+			
+		      		<a class="brand" href="/home/">AMPTA</a>
+		      		
+		      			<ul class="nav">
+		                <li class="divider-vertical"></li>
+		      				  <li><a href ="">Start</a></li>
+		                <li class="divider-vertical"></li>
+		          			<li></li>
+		                <li class="divider-vertical"></li>
+		          			<li></li>
+		                <li class="divider-vertical"></li>
+		               
+		        		</ul>
+
+		            <p class="pull-right"></p>
+		            <p class="pull-right"> </p>
+
+		             
+		      </div>
+		          
 		</div>
+
+		{% endblock %}
+
+		{% block sidebar %}
+		<div class="container-fluid">
+			<div class="row-fluid">
+
+				<div class="span3">
+					
+					<div class="well">	
+
+						{% for project in projects %}
+						<ul class="nav nav-list">
+							<li class="nav-header"> {{ project }}</li>
+						</ul>	
+						{% endfor %}
+
+						<ul class="nav nav-list">
+							<li class="nav-header">Dina senaste 10 tickets</li>
+						</ul>
+
+				</div>
+			</div>
+		{% endblock %}
+
+				<div class="span9">
+					{% block content %}
+						<h1>content</h1>
+					{% endblock %}
+				</div>
+			</div>
+		</div>
+
 	</body>
 </html>
