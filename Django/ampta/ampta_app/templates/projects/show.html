@@ -35,11 +35,12 @@
 		</p>
 	
 </div>
+<a href="{% url ticket_add project.id %}"> Lägg till ticket </a>
 	{% if project|ownership:user %}
 		<a href="{% url project_edit project.id %}"> Editera projekt </a>
 		<a href="{% url project_delete project.id %}"> Ta bort projekt </a>
 	{% else %}
-	<p> inga rattigheter</p>
+	<p> inga rättigheter</p>
 	{% endif %}
 
 {% endblock %}

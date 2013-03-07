@@ -1,0 +1,44 @@
+{% extends 'shared/base.html' %}
+{% load custom_filters %}
+
+{% block title %}
+	Ticket
+{% endblock %}
+
+{% block content %}
+
+<div class="ticket">
+
+		<p>Project Owner:{{ ticket.project.owner }}</p>
+		<h1>{{ ticket.ticket_name}} </h1>
+		<p> {{ ticket.description }} </p>
+		<p>Ägare: {{ ticket.user.get_full_name }}</p>
+		<p>Startar: {{ ticket.start_time|date:"Y-m-d" }} </p>
+		<p>Startar: {{ ticket.end_time|date:"Y-m-d" }} </p>
+
+		<p>
+			Tickets:<br />
+			<ul>
+				{% for ticket in project.tickets.all %}
+					<li> {{ ticket.ticket_name }} </li>
+				{% endfor %}
+			</ul>
+		</p>
+	
+</div>
+
+
+	{% if ticket|ticket_ownership:user %}
+		<a href=""> Editera ticket </a>
+		<a href=""> Ta bort ticket </a>
+	{% elif ticket|ticket_project_ownership:user %}
+		<a href=""> Editera ticket </a>
+		<a href=""> Ta bort ticket </a>
+	{% else %}
+	<p> inga rättigheter</p>
+	{% endif %}
+
+{% endblock %}
+
+
+

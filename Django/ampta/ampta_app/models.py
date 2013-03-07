@@ -49,6 +49,25 @@ class ProjectForm(ModelForm):
 		model = Project
 		widgets = {'start_date' : SelectDateWidget(), 'end_date' : SelectDateWidget()}
 
+class TicketForm(ModelForm):
+
+	class Meta:
+		model = Ticket
+		exclude = ('project', 'user')
+		widgets = {'start_time' : SelectDateWidget(), 'end_time' : SelectDateWidget()}
+
 class LoginForm(forms.Form):
 	username = forms.CharField(max_length = 20)
 	password = forms.CharField(max_length = 20, widget=forms.PasswordInput)
+
+	
+
+
+
+
+
+
+
+
+
+

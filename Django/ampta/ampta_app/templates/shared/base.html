@@ -21,21 +21,21 @@
 			<div class="navbar">
 			     <div class="navbar-inner">
 			
-		      		<a class="brand" href="/home/">AMPTA</a>
+		      		<a class="brand" href="/index/">AMPTA</a>
 		      		
 		      			<ul class="nav">
 		                <li class="divider-vertical"></li>
-		      				  <li><a href ="">Start</a></li>
+		      				  <li><a href ="/index/">Start</a></li>
 		                <li class="divider-vertical"></li>
-		          			<li></li>
+		          			<li><a href="{% url project_list %}">Alla projekt </a></li>
 		                <li class="divider-vertical"></li>
-		          			<li></li>
+		          			<li><a href="{% url project_add %}">Skapa projekt </a></li>
 		                <li class="divider-vertical"></li>
 		               
 		        		</ul>
 
-		            <p class="pull-right"></p>
-		            <p class="pull-right"> </p>
+		            <p class="pull-right"><a href="{% url logout %}">Logga ut </a></p>
+		            <p class="pull-right">Inloggad som: {{user.get_full_name}}</p>
 
 		             
 		      </div>
@@ -52,14 +52,22 @@
 					
 					<div class="well">	
 
-						{% for project in projects %}
+						
 						<ul class="nav nav-list">
-							<li class="nav-header"> {{ project }}</li>
+							<li class="nav-header">Dina projekt</li>
+							
+							{% for project in user_projects %}
+							<a href="{% url project_show project.id %}"> {{ project }} </a>
+							
+							{% endfor %}
 						</ul>	
-						{% endfor %}
-
+						
 						<ul class="nav nav-list">
 							<li class="nav-header">Dina senaste 10 tickets</li>
+							{% for ticket in user_tickets %}
+							<a href="{% url ticket_show ticket.id %}"> {{ ticket }} </a>
+							
+							{% endfor %}
 						</ul>
 
 				</div>
@@ -67,9 +75,11 @@
 		{% endblock %}
 
 				<div class="span9">
-					{% block content %}
-						<h1>content</h1>
-					{% endblock %}
+					
+						{% block content %}
+							<h1>content</h1>
+						{% endblock %}
+
 				</div>
 			</div>
 		</div>

@@ -5,7 +5,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-	#url(r'^$', 'ampta_app.views.index'),
+	url(r'^index/$', 'ampta_app.views.index', name="index"),
     # Examples:
     # url(r'^$', 'ampta.views.home', name='home'),
     # url(r'^ampta/', include('ampta.foo.urls')),
@@ -21,7 +21,12 @@ urlpatterns = patterns('',
     url(r'^project/(?P<project_id>\d+)/show/$', 'ampta_app.views.project_show', name="project_show"),
     url(r'^project/(?P<project_id>\d+)/delete/$', 'ampta_app.views.project_delete', name="project_delete"),
     url(r'^project/(?P<project_id>\d+)/edit/$', 'ampta_app.views.project_edit', name="project_edit"),
-
+    #####tickets
+    
+    url(r'^ticket/(?P<project_id>\d+)/add/$', 'ampta_app.views.ticket_add', name="ticket_add"),
+    #url(r'^ticket/(?P<ticket_id>\d+)/edit/$', 'ampta_app.views.ticket_edit', name="ticket_edit"),
+    url(r'^ticket/(?P<ticket_id>\d+)/show/$', 'ampta_app.views.ticket_show', name="ticket_show"),
+    #url(r'^ticket/(?P<ticket_id>\d+)/delete/$', 'ampta_app.views.ticket_delete', name="ticket_delete"),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
