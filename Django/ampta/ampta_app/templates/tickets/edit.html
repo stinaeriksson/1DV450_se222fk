@@ -1,0 +1,15 @@
+{% extends "shared/base.html" %}
+
+{% block title %}
+	Editera ticket
+{% endblock %}
+
+<h1> Editera ticket </h1>
+
+{% block content %}
+	<form action="{{ticket_edit}}" method="POST"> {% csrf_token %}
+		{{ form.as_p }}
+
+		<input type="submit" value="Spara ändringar" />
+	</form> 
+{% endblock %}

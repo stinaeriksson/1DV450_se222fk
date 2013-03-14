@@ -2,14 +2,16 @@ from django.conf.urls import patterns, include, url
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
+
 admin.autodiscover()
+
 
 urlpatterns = patterns('',
 	url(r'^index/$', 'ampta_app.views.index', name="index"),
     # Examples:
     # url(r'^$', 'ampta.views.home', name='home'),
     # url(r'^ampta/', include('ampta.foo.urls')),
-
+   
     #####login
     url(r'^login/$', 'ampta_app.views.login_user', name="login"),
     url(r'^logout/$', 'ampta_app.views.logout_user', name="logout"),
@@ -24,13 +26,18 @@ urlpatterns = patterns('',
     #####tickets
     
     url(r'^ticket/(?P<project_id>\d+)/add/$', 'ampta_app.views.ticket_add', name="ticket_add"),
-    #url(r'^ticket/(?P<ticket_id>\d+)/edit/$', 'ampta_app.views.ticket_edit', name="ticket_edit"),
+    url(r'^ticket/(?P<ticket_id>\d+)/edit/$', 'ampta_app.views.ticket_edit', name="ticket_edit"),
     url(r'^ticket/(?P<ticket_id>\d+)/show/$', 'ampta_app.views.ticket_show', name="ticket_show"),
-    #url(r'^ticket/(?P<ticket_id>\d+)/delete/$', 'ampta_app.views.ticket_delete', name="ticket_delete"),
+    url(r'^ticket/(?P<ticket_id>\d+)/delete/$', 'ampta_app.views.ticket_delete', name="ticket_delete"),
+
+
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
    
     # Uncomment the next line to enable the admin:
-     url(r'^admin/', include(admin.site.urls)),
+   
+    url(r'^admin/jsi18n/$', 'django.views.i18n.javascript_catalog'),
+    url(r'^admin/', include(admin.site.urls)),
+
 )

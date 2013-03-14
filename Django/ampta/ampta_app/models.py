@@ -4,6 +4,11 @@ from django.utils.encoding import iri_to_uri
 from django.forms import ModelForm
 from django.forms.extras.widgets import SelectDateWidget
 from django import forms
+from django.forms.widgets import RadioSelect, CheckboxSelectMultiple
+from django.forms.fields import datetime
+from django.contrib.admin import widgets
+
+import datetime
 
 class Project(models.Model):
 	project_name = models.CharField(max_length = 40)
@@ -42,32 +47,22 @@ class Ticket(models.Model):
 	def __unicode__(self):
 		return self.ticket_name
 	
+	def owned_by_user(self, user):
+		return self.user == user
 
-class ProjectForm(ModelForm):
+	def owned_by_user2(self, user):
+		return self.project.owner == user
 
-	class Meta:
-		model = Project
-		widgets = {'start_date' : SelectDateWidget(), 'end_date' : SelectDateWidget()}
 
-class TicketForm(ModelForm):
 
-	class Meta:
-		model = Ticket
-		exclude = ('project', 'user')
-		widgets = {'start_time' : SelectDateWidget(), 'end_time' : SelectDateWidget()}
 
 class LoginForm(forms.Form):
 	username = forms.CharField(max_length = 20)
 	password = forms.CharField(max_length = 20, widget=forms.PasswordInput)
 
-	
 
 
 
-
-
-
-
-
+		
 
 

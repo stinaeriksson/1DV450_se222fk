@@ -5,23 +5,48 @@
 {% endblock %}
 
 
-
-{% block content %}
-<h1>Alla projekt i systemet</h1>
-
-<div class="project">
+<div class="well">
+	{% block content %}
+	<h1>Alla projekt i systemet</h1>
 
 	{% for project in projects %}
-	<ul>
-		<li>
-			<a href="{% url project_show project.id %}"> {{ project }} </a>
-		</li>
-	</ul>	
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<td><a href="{% url project_show project.id %}"> {{ project }} </a>
+
+				{% if project.owner == user %}
+				<div class="pull-right">	
+					<span class="label"> Admin </span></td>
+				</div>
+				
+				{% else %}
+				
+					{% for users in project.users.all %}
+					{% if users == user %}
+					<div class="pull-right">
+						<span class="label label-inverse">Medlem</span>
+					</div>
+				{% endif %}
+
+					{% endfor %}
+				
+				
+				
+				
+				{% endif %}
+				
+				
+				
+				
+				
+			</tr>
+		</tbody>
+	</table>
 	{% endfor %}
+
+	{% endblock %}
+
 </div>
-
-
-{% endblock %}
-
-
 

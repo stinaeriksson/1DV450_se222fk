@@ -20,7 +20,7 @@
 			Medlemmar:<br />
 			<ul>
 				{% for user in project.users.all %}
-					<li> {{ user.get_full_name }} </li>
+					<li> {{ user }} </li>
 				{% endfor %}
 			</ul>
 		</p>

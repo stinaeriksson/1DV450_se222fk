@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import get_list_or_404, render, redirect, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseServerError
 
 
-from ampta_app.models import Project, ProjectForm, LoginForm, Ticket, TicketForm
+from ampta_app.models import Project, LoginForm, Ticket
+from ampta_app.forms import TicketForm, ProjectForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, permission_required
 
@@ -44,7 +45,7 @@ def login_user(request):
 def logout_user(request):
 	#avsluta sessionen
 	logout(request)
-	return redirect('/login/')
+	return redirect(login_user)
 
 ##
 #Project
@@ -59,7 +60,7 @@ def project_add(request):
 	if request.method == "POST":
 		form = ProjectForm(request.POST)
 		if form.is_valid():
-			#form.instance.owner = request.user
+			form.instance.owner = request.user
 			try:
 				form.save()
 				return redirect(project_list)
@@ -112,6 +113,7 @@ def ticket_add(request, project_id):
 		if form.is_valid():
 			form.instance.project = project
 			form.instance.user = request.user
+
 			try:
 				form.save()
 				return redirect(project_list)
@@ -127,6 +129,32 @@ def ticket_show(request, ticket_id):
 	ticket = get_object_or_404(Ticket, pk=ticket_id)
 	return render(request, 'tickets/show.html', {'ticket': ticket})
 
+@login_required(login_url='/login')
+def ticket_delete(request, ticket_id):
+	ticket = get_object_or_404(Ticket, pk=ticket_id)
+	if ticket.owned_by_user(request.user) or ticket.owned_by_user2(request.user):
+		ticket.delete()
+		return redirect(index)
+	else:
+		return HttpResponse("Du har ej rättigheter att ta bort ticket")
+
+@login_required(login_url='/login')
+def ticket_edit(request, ticket_id):
+	ticket = get_object_or_404(Ticket, pk=ticket_id)
+	if ticket.owned_by_user(request.user) or ticket.owned_by_user2(request.user):
+		if request.method == "POST":
+			form = TicketForm(request.POST, instance = ticket)
+			if form.is_valid():
+				try:
+					form.save()
+					return redirect(index)
+				except:
+					return HttpResponseServerError()
+		else:
+			form = TicketForm(instance = ticket)
+
+	return render(request, 'tickets/edit.html', {"form": form, "ticket" : ticket,})
+
 
 ###
 #Error
@@ -136,11 +164,14 @@ def error_permission(request):
 	return HttpResponse("Du har ej rattigheter") 
 
 def User(request):
-	user = request.user
-	user_projects = user.projects.all()
-	user_tickets = user.tickets.all()
-	
-	return {'user':user, 'user_projects':user_projects, 'user_tickets':user_tickets, }
+	if request.user.is_anonymous():
+		return redirect(login_user)
+	else:
+		user = request.user
+		user_projects = user.projects.all()
+		user_tickets = user.tickets.all()
+		
+		return {'user':user, 'user_projects':user_projects, 'user_tickets':user_tickets, }
 	
 
 
