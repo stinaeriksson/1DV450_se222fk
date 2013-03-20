@@ -2,12 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.encoding import iri_to_uri
 from django.forms import ModelForm
-from django.forms.extras.widgets import SelectDateWidget
 from django import forms
-from django.forms.widgets import RadioSelect, CheckboxSelectMultiple
-from django.forms.fields import datetime
-from django.contrib.admin import widgets
-
 import datetime
 
 class Project(models.Model):
@@ -24,10 +19,10 @@ class Project(models.Model):
 	def owned_by_user(self, user):
 		return self.owner == user
 
-	class Meta:
-		permissions = (
-			("can_add_project", "Can add project"),
-		)
+	def user_in_project(self, user):
+		for users in self.users.all():
+			return users == user
+		
 
 class Status(models.Model):
 	status_name = models.CharField(max_length = 20)
@@ -50,15 +45,11 @@ class Ticket(models.Model):
 	def owned_by_user(self, user):
 		return self.user == user
 
-	def owned_by_user2(self, user):
+	def is_project_owner(self, user):
 		return self.project.owner == user
 
 
 
-
-class LoginForm(forms.Form):
-	username = forms.CharField(max_length = 20)
-	password = forms.CharField(max_length = 20, widget=forms.PasswordInput)
 
 
 

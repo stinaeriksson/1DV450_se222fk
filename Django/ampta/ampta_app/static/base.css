@@ -1,0 +1,82 @@
+.nav ul a {
+	 font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+	 font-size: 14px;
+
+}
+.li {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+	 font-size: 14px;
+
+}
+
+.my_list  {
+	list-style-type: none;
+	padding: 2px;
+	margin-left: -20px;
+}
+
+.my_list a {
+	
+	color: black;
+
+}
+
+.navbar-inner {
+	height: 45px;
+}
+.pull-right {
+	float: right;
+	margin-left: 400px;
+}
+.pull-right p {
+	float: right;
+	padding-left: 20px;
+	padding-top: 12px;
+
+}
+.message {
+	margin-top: 20px;
+}
+
+.login {
+	width: 270px;
+	padding: 20px;
+	margin-left: 400px;
+	margin-right: auto;
+	margin-top: 50px;
+}
+.login h1 {
+	margin-bottom: 30px;
+}
+.login-error {
+	width:270px;
+	margin-left: 420px;
+	margin-right: auto;
+}
+.welcome{
+	height: 400px;
+	text-align: center;
+}
+h1 {
+	margin-bottom: 30px;
+}
+.success {
+	margin-top: 30px;
+	width: 200px;
+}
+
+.confirm{
+	float: right;
+	margin-top: -30px;
+	margin-right: 600px;
+}
+
+.vTimeField{
+	margin-left: 17px;
+}
+
+.my_buttons {
+	margin-top: 50px;	
+}
+
+

@@ -8,6 +8,8 @@
 
 <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}admin/css/base.css"/>
 <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}admin/css/widgets.css"/>
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}admin/css/forms.css"/>
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}admin/css/global.css"/>
 
 <script type="text/javascript" src="/admin/jsi18n/"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}admin/js/core.js"></script>
@@ -23,12 +25,16 @@
 {% endblock %}
 
 
-<h1> Lägg till projekt </h1>
+
 
 {% block content %}
-	<form action="{{project_add}}" method="POST"> {% csrf_token %}
-		{{ form.as_p }}
+	<div class="well">
+		<h1> Lägg till projekt </h1>
 
-		<input type="submit" value="Lägg till projekt" />
-	</form> 
+		<form action="{{project_add}}" method="POST"> {% csrf_token %}
+			{{ form.as_p }}
+			
+			<input type="submit" value="Lägg till projekt" class="btn" />
+		</form> 
+	</div>
 {% endblock %}

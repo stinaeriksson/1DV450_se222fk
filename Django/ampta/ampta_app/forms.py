@@ -23,7 +23,7 @@ class TicketForm(ModelForm):
         self.fields['description'].label = "Beskrivning"
         self.fields['start_time'].label = "Startar"
         self.fields['end_time'].label = "Slutar"
-        
+        self.fields['description'].widget.attrs['rows'] = 4
        
        
 class ProjectForm(ModelForm):
@@ -43,3 +43,10 @@ class ProjectForm(ModelForm):
         self.fields['start_date'].label = "Startar"
         self.fields['end_date'].label = "Slutar"
         self.fields['users'].label = "Medlemmar i projektet"
+        self.fields['description'].widget.attrs['rows'] = 4
+
+
+class LoginForm(forms.Form):
+    username = forms.CharField(max_length = 20)
+    password = forms.CharField(max_length = 20, widget=forms.PasswordInput)
+

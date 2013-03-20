@@ -223,9 +223,9 @@ textarea {
 
 body {
   margin: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  line-height: 20px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
   color: #333333;
   background-color: #ffffff;
 }
@@ -6156,3 +6156,5 @@ a.badge:focus {
 .affix {
   position: fixed;
 }
+
+

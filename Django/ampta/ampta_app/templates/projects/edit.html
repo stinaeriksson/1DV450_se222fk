@@ -4,12 +4,40 @@
 	Editera projekt
 {% endblock %}
 
-<h1> Editera projekt </h1>
+{% load adminmedia %}
+
+
+{% block extra_head %}
+
+
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}admin/css/base.css"/>
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}admin/css/widgets.css"/>
+
+<script type="text/javascript" src="/admin/jsi18n/"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}admin/js/core.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}admin/js/admin/RelatedObjectLookups.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}admin/js/jquery.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}admin/js/jquery.init.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}admin/js/actions.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}admin/js/calendar.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}admin/js/admin/DateTimeShortcuts.js"></script>
+
+<script type="text/javascript">window.__admin_media_prefix__ = "{% filter escapejs %}{% admin_media_prefix %}{% endfilter %}";</script>
+{{block.super}}
+{% endblock %}
+
+
 
 {% block content %}
+
+<div class="well">
+
+	<h1> Editera projekt </h1>
+	
 	<form action="{{project_edit}}" method="POST"> {% csrf_token %}
 		{{ form.as_p }}
 
-		<input type="submit" value="Spara ändringar" />
+		<input type="submit" value="Spara ändringar" class="btn" />
 	</form> 
+</div>
 {% endblock %}

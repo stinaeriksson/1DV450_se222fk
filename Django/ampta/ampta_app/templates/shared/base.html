@@ -9,19 +9,21 @@
 		</title>
 
 		 {% block extra_head %}
+
+		
+
 		 {% endblock %}
 
-
-	
-
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">	
+		  <meta name="viewport" content="width=device-width, initial-scale=1.0">	
 
 
 		<link href="{{ STATIC_URL }}bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
 
 			
-    <link href="{{ STATIC_URL }}bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-
+        <link href="{{ STATIC_URL }}bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+	
+        <link href="{{ STATIC_URL }}base.css" rel="stylesheet">
+		
 
 
 			
@@ -38,18 +40,17 @@
 		      		
 		      			<ul class="nav">
 		                <li class="divider-vertical"></li>
-		      				  <li><a href ="/index/">Start</a></li>
+		      				  <li class="li"><a href ="/index/">Start</a></li>
 		                <li class="divider-vertical"></li>
-		          			<li><a href="{% url project_list %}"> Alla projekt </a></li>
+		          			<li class="li"><a href="{% url project_list %}"> Alla projekt </a></li>
 		                <li class="divider-vertical"></li>
-		          			<li><a href="{% url project_add %}">Skapa projekt </a></li>
+		          			<li class="li"><a href="{% url project_add %}">Skapa projekt </a></li>
 		                <li class="divider-vertical"></li>
 		               
-		        		</ul>
-
-		            <p class="pull-right"><a href="{% url logout %}">Logga ut </a></p>
-		            <p class="pull-right">Inloggad som: {{ user.get_full_name }} </p> 
-
+		               	<div class="pull-right">
+				            <p class=""><a href="{% url logout %}"> Logga ut </a></p>
+				            <p class="">Inloggad som: {{ user.get_full_name }} </p> 
+		           		</div>
 		             
 		      </div>
 		          
@@ -64,33 +65,43 @@
 				<div class="span3">
 					
 					<div class="well">	
-
 						
 						<ul class="nav nav-list">
 							<li class="nav-header">Dina projekt</li>
 							
 							{% for project in user_projects %}
 							<ul>
-								<li>
+								<li class="my_list">
 									<a href="{% url project_show project.id %}"> {{ project }} </a>
 								</li>
 							</ul>
 							{% endfor %}
+							{% if not user_projects %}
+								<p> Du har inga projekt </p>
+							{% endif %}
 						</ul>	
 						
 						<ul class="nav nav-list">
 							<li class="nav-header">Dina senaste 10 tickets</li>
 							{% for ticket in user_tickets %}
 							<ul>
-								<li>
+								<li class="my_list">
 									<a href="{% url ticket_show ticket.id %}"> {{ ticket }} </a>
 								</li>
 							</ul>
 							{% endfor %}
+							{% if not user_tickets %}
+								<p> Du har inga tickets </p>
+							{% endif %}
 						</ul>
-
 				</div>
+				{% for message in flash.error %}
+					<div class="alert alert-error">
+				{{ message }}
+		</div>
+		{% endfor %}
 			</div>
+
 		{% endblock %}
 
 				<div class="span9">

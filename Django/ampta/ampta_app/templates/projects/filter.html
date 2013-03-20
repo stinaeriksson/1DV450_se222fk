@@ -8,10 +8,10 @@
 	{% block content %}
 
 	<div class="well">
-	<h1>Alla projekt i systemet</h1>
+	<h1>Alla projekt i systemet med tickets </h1>
 
 	{% for project in projects %}
-
+	{% if project.tickets.all %}
 	<table class="table">
 		<tbody>
 			<tr>
@@ -35,7 +35,7 @@
 				
 				
 				{% endif %}
-					
+	{% endif %}		
 				
 			</tr>
 		</tbody>
@@ -49,7 +49,6 @@
 		{% endfor %}
 	</div>
 
-	<a class="btn btn-primary" href="{% url project_filter %}"> Visa bara projekt med tickets </a>
 </div>
 {% endblock %}
 
