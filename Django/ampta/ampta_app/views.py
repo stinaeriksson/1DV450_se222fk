@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import get_list_or_404, render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseServerError
-
-
 from ampta_app.models import Project, Ticket
 from ampta_app.forms import TicketForm, ProjectForm, LoginForm
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 
+@login_required(login_url='/login')
 def index(request):
 	return render(request, 'index.html')
 
@@ -20,20 +19,15 @@ def index(request):
 def login_user(request):
 	message = ''
 	if request.method == "POST":
-
 		form = LoginForm(request.POST)
 		if form.is_valid():
 			username_to_try = form.cleaned_data["username"]
 			password_to_try = form.cleaned_data["password"]
-
 			user = authenticate(username=username_to_try, password=password_to_try)
 			if user is not None:
-				if user.is_active:
-					login(request, user)
-					request.session['has_logged_in'] = True
-					return redirect(index)
-				else:
-					return HttpResponse("<h1>Funkar inte</h1>")
+				login(request, user)
+				request.session['has_logged_in'] = True
+				return redirect(index)
 			else:
 				message = "Fel användarnamn eller lösenord"
 	else:
@@ -43,8 +37,9 @@ def login_user(request):
 ###
 #Logout
 ###
+@login_required(login_url='/login')
 def logout_user(request):
-	#avsluta sessionen
+	request.session['has_logged_in'] = False
 	logout(request)
 	return redirect(login_user)
 
@@ -53,12 +48,14 @@ def logout_user(request):
 ##
 @login_required(login_url='/login')
 def project_list(request):
-	projects = get_list_or_404(Project.objects.order_by('project_name'))
-	return render(request, 'projects/list.html', {"projects" : projects})
+	projects = Project.objects.order_by('project_name')
+	if projects:
+		return render(request,'projects/list.html', {"projects" : projects})
+	else:
+		return render(request,'projects/list.html', {"message" : 'Det finns inga projekt i systemet'})
 
 
 @login_required(login_url='/login')
-@permission_required('ampta_app.can_add_project', login_url='/index/')
 def project_add(request):
 	if request.method == "POST":
 		form = ProjectForm(request.POST)
@@ -80,12 +77,8 @@ def project_show(request, project_id):
 	project = get_object_or_404(Project, pk=project_id)
 	if not (project.user_in_project(request.user) or project.owned_by_user(request.user)):	
 		return redirect(project_list)
-
-
 	else:
 		return render(request, 'projects/show.html', {'project': project})
-
-	
 
 @login_required(login_url='/login')
 def project_delete(request, project_id):
@@ -125,15 +118,12 @@ def project_edit(request, project_id):
 				return HttpResponseServerError()
 	else:
 		form = ProjectForm(instance = project)
-
-
 	return render(request, 'projects/edit.html', {"form": form, "project" : project,})
 
 @login_required(login_url='/login')
 def project_filter(request):
 	projects = get_list_or_404(Project.objects.order_by('project_name'))
 	return render(request, 'projects/filter.html', {"projects" : projects})
-
 
 ###
 #Tickets
@@ -158,7 +148,6 @@ def ticket_add(request, project_id):
 				return HttpResponseServerError()
 	else:
 		form = TicketForm()
-
 	return render(request, 'tickets/add.html', {"form": form})
 
 @login_required(login_url='/login/')
@@ -211,7 +200,6 @@ def ticket_edit(request, ticket_id):
 	return render(request, 'tickets/edit.html', {"form": form, "ticket" : ticket,})
 
 
-
 def User(request):
 	if request.user.is_anonymous():
 		return redirect(login_user)
@@ -221,10 +209,6 @@ def User(request):
 		user_tickets = user.tickets.all()
 		
 		return {'user':user, 'user_projects':user_projects, 'user_tickets':user_tickets, }
-	
-
-
-
 
 
 

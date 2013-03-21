@@ -12,14 +12,13 @@ class TicketForm(ModelForm):
         model = Ticket
         exclude = ('project', 'user', )
 
-
     def __init__(self, *args, **kwargs):
         super(TicketForm, self).__init__(*args, **kwargs)
       
         self.fields['start_time'].widget = widgets.AdminSplitDateTime()
         self.fields['end_time'].widget = widgets.AdminSplitDateTime()
 
-        self.fields['ticket_name'].label = "Namn på ticket"
+        self.fields['ticket_name'].label = "Rubrik"
         self.fields['description'].label = "Beskrivning"
         self.fields['start_time'].label = "Startar"
         self.fields['end_time'].label = "Slutar"
@@ -40,8 +39,8 @@ class ProjectForm(ModelForm):
 
         self.fields['project_name'].label = "Projektets namn"
         self.fields['description'].label = "Beskrivning"
-        self.fields['start_date'].label = "Startar"
-        self.fields['end_date'].label = "Slutar"
+        self.fields['start_date'].label = "Projektet startar"
+        self.fields['end_date'].label = "Projektets avslutas"
         self.fields['users'].label = "Medlemmar i projektet"
         self.fields['description'].widget.attrs['rows'] = 4
 

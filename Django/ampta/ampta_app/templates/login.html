@@ -10,7 +10,6 @@
 {% block sidebar %}
 {% endblock %}
 
-
 {% block content %}
 
 <div class="login">
@@ -21,11 +20,11 @@
 			{% if form.username.errors %}
 				<div class="alert alert-error"><p> {{ form.username.errors }} </p></div>
 			{% endif %}
-			<p> Användarnamn: </ br>{{ form.username }}</p>
+			<p> Användarnamn </ br>{{ form.username }}</p>
 			{% if form.password.errors %}
 				<div class="alert alert-error"><p> {{ form.password.errors }} </p></div>
 			{% endif %}
-			<p> Lösenord: </ br>{{ form.password }}</p>
+			<p> Lösenord </ br>{{ form.password }}</p>
 			
 			<input type="submit" value="Logga in" class="btn btn-primary" />
 		</form>
@@ -39,8 +38,5 @@
 		</div>
 	{% endif %}
 </div>
-
-
-
 
 {% endblock %}

@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from django.utils.encoding import iri_to_uri
 from django.forms import ModelForm
 from django import forms
-import datetime
 
 class Project(models.Model):
 	project_name = models.CharField(max_length = 40)

@@ -2,6 +2,9 @@
 
 {% load adminmedia %}
 
+{% block title %}
+	Skapa ticket
+{% endblock %}
 
 {% block extra_head %}
 
@@ -18,25 +21,18 @@
 <script type="text/javascript" src="{{ STATIC_URL }}admin/js/actions.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}admin/js/calendar.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}admin/js/admin/DateTimeShortcuts.js"></script>
-
 <script type="text/javascript">window.__admin_media_prefix__ = "{% filter escapejs %}{% admin_media_prefix %}{% endfilter %}";</script>
 
-
-
-
 {% endblock %}
-
 
 {% block content %}
 <div class="well">
 	<div class="ticket">
-<h1> Lägg till ticket </h1>
+	<h2> Skapa en ny ticket </h2>
 	<form action="{{ticket_add}}" method="POST"> {% csrf_token %}
 		{{ form.as_p }}
-		
-		
-		<input type="submit" value="Lägg till ticket" class="btn" />
+		<input type="submit" value="Skapa ticket" class="btn" />
 	</form> 
-</div>
+	</div>
 </div>
 {% endblock %}

@@ -1,47 +1,41 @@
 {% extends 'shared/base.html' %}
 
 {% block title %}
-	Alla projekt
+	Alla projekt med tickets
 {% endblock %}
 
+{% block content %}
+<div class="well">
 
-	{% block content %}
-
-	<div class="well">
 	<h1>Alla projekt i systemet med tickets </h1>
-
 	{% for project in projects %}
 	{% if project.tickets.all %}
 	<table class="table">
 		<tbody>
 			<tr>
 				<td><a href="{% url project_show project.id %}"> {{ project }} </a>
-
-				{% if project.owner == user %}
-				<div class="pull-right">	
-					<span class="label"> Admin </span></td>
-				</div>
-				
-				{% else %}
+					{% if project.owner == user %}
+					<div class="pull-right">
+						<span class="label"> Admin </span></td>
+					</div>
+					{% else %}
 				
 					{% for users in project.users.all %}
-					{% if users == user %}
-					<div class="pull-right">
-						<span class="label label-inverse">Medlem</span>
-					</div>
-				{% endif %}
+						{% if users == user %}
+						<div class="pull-right">
+							<span class="label label-inverse">Medlem</span>
+						</div>
+						{% endif %}
 
 					{% endfor %}
-				
-				
-				{% endif %}
+					{% endif %}
 	{% endif %}		
 				
 			</tr>
 		</tbody>
 	</table>
 	{% endfor %}
-<div class="success">
+	<div class="success">
 		{% for message in flash.notice %}
 		<div class="alert alert-success">
 			{{ message }}

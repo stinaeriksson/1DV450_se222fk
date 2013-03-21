@@ -17,10 +17,9 @@
 	<p><strong>Medlemmar i projektet: </strong></p>
 		<ul>
 			{% for user in project.users.all %}
-				<li> {{ user }} </li>
+				<li> {{ user.get_full_name }} </li>
 			{% endfor %}
 		</ul>
-
 	<p><strong>Tickets: </strong></p>
 
 	{% if not project.tickets.all %}
@@ -39,7 +38,6 @@
 			<a class="btn btn-primary" href="{% url project_edit project.id %}"> Editera projekt </a>
 			<a class="btn btn-danger" href="{% url project_confirm_delete project.id %}"> Ta bort projekt </a>
 		{% else %}
-			
 		{% endif %}
 	</div>
 
@@ -52,7 +50,6 @@
 	</div>
 		
 </div>
-
 {% endblock %}
 
 

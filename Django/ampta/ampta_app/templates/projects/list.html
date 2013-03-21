@@ -5,51 +5,46 @@
 {% endblock %}
 
 
-	{% block content %}
+{% block content %}
+<div class="well">
 
-	<div class="well">
 	<h1>Alla projekt i systemet</h1>
-
+	{{ message }}
 	{% for project in projects %}
 
 	<table class="table">
 		<tbody>
 			<tr>
 				<td><a href="{% url project_show project.id %}"> {{ project }} </a>
-
-				{% if project.owner == user %}
-				<div class="pull-right">	
-					<span class="label"> Admin </span></td>
-				</div>
+					{% if project.owner == user %}
+					<div class="pull-right">	
+						<span class="label"> Admin </span></td>
+					</div>
 				
-				{% else %}
+					{% else %}
 				
 					{% for users in project.users.all %}
-					{% if users == user %}
-					<div class="pull-right">
-						<span class="label label-inverse">Medlem</span>
-					</div>
-				{% endif %}
-
+						{% if users == user %}
+						<div class="pull-right">
+							<span class="label label-inverse">Medlem</span>
+						</div>
+						{% endif %}
 					{% endfor %}
-				
-				
-				{% endif %}
-					
-				
+					{% endif %}
 			</tr>
 		</tbody>
 	</table>
 	{% endfor %}
-<div class="success">
+	<div class="success">
 		{% for message in flash.notice %}
 		<div class="alert alert-success">
 			{{ message }}
 		</div>
 		{% endfor %}
 	</div>
-
+	{% if not message %}
 	<a class="btn btn-primary" href="{% url project_filter %}"> Visa bara projekt med tickets </a>
+	{% endif %}
 </div>
 {% endblock %}
 

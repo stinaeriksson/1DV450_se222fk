@@ -5,8 +5,6 @@
 {% endblock %}
 
 {% load adminmedia %}
-
-
 {% block extra_head %}
 
 <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}admin/css/forms.css"/>
@@ -22,23 +20,15 @@
 <script type="text/javascript" src="{{ STATIC_URL }}admin/js/actions.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}admin/js/calendar.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}admin/js/admin/DateTimeShortcuts.js"></script>
-
 <script type="text/javascript">window.__admin_media_prefix__ = "{% filter escapejs %}{% admin_media_prefix %}{% endfilter %}";</script>
-
-
-
 
 {% endblock %}
 
-
-
 {% block content %}
 <div class="well">
-	
-	<h1> Editera ticket </h1>
+	<h2> Editera ticket </h2>
 	<form action="{{ticket_edit}}" method="POST"> {% csrf_token %}
 		{{ form.as_p }}
-
 		<input type="submit" value="Spara ändringar" class="btn" />
 	</form> 
 </div>	

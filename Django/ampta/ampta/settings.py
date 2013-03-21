@@ -1,11 +1,10 @@
 # Django settings for ampta project.
-import os.path
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+     ('Stina Eriksson', 'se222fk@student.lnu.se'),
 )
 
 ADMIN_MEDIA_PREFIX = '/static/media/admin/'

@@ -3,17 +3,14 @@
 {% block content %}
 
 <div class="well">
-    
-        <h5>{{ message }} {{ ticket }}?</h5>
-        
-            <a class="btn btn-primary" href="{% url ticket_show ticket.id %}">Avbryt</a> 
-            <form action="{% url ticket_delete ticket.id %}" method="post"> {% csrf_token %}
-                <input type="hidden" name="next" value="{% url ticket_show ticket.id %}" />
-                <div class="confirm">
-                <input type="submit" value="Ta bort ticket" class="btn btn-danger"/>
-                </div>
-            </form>
-        
-   
+
+	<h5>{{ message }} {{ ticket }}?</h5>
+	<a class="btn btn-primary" href="{% url ticket_show ticket.id %}">Avbryt</a> 
+        <form action="{% url ticket_delete ticket.id %}" method="post"> {% csrf_token %}
+            <input type="hidden" name="next" value="{% url ticket_show ticket.id %}" />
+            <div class="confirm">
+            	<input type="submit" value="Ta bort ticket" class="btn btn-danger"/>
+            </div>
+        </form>
 </div>
 {% endblock %}
